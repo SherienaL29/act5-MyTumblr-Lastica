@@ -1,3 +1,24 @@
+<?php  
+//start the session
+
+session_start();
+
+//check if the session variable are set or merong laman and variable
+//to check if the account is log in
+if (isset($_SESSION['ses_username'])===false){
+    header("Location: index.php?logfirst");
+    }
+    else if (isset($_REQUEST['logout'])===true){
+        session_destroy();
+        header("Location: index.php?logout");
+    }
+
+
+?>
+
+
+
+
 <!doctype html>
                         <html>
                             <head>
@@ -32,13 +53,14 @@ body {
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 cover">
                 <div class="media align-items-end profile-head">
-                    <div class="profile mr-3"><img src="images/Profile.avif" alt="..." width="150" class="rounded mb-2 img-thumbnail"><a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit Profile</a>
+                    <div class="profile mr-3"><img src="images/Profile.avif" alt="..." width="150" class="rounded mb-2 img-thumbnail">
+                        <a href="?logout" class="btn btn-outline-dark btn-sm btn-block">Sign Out</a>
 
 
                     </div>
                     <div class="media-body mb-5 text-black font-weight-bold">
-                        <h4 class="mt-0 mb-0">Sheriena S. Lastica</h4>
-                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>Tapuyan Gasan Marinduque PH
+                        <h4 class="mt-0 mb-0"> <?php echo $_SESSION['ses_fullname']; ?> </h4>
+                        <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i> <?php echo $_SESSION['ses_address']; ?>
                          </p>
                     </div>
                 </div>
